@@ -1,0 +1,120 @@
+\documentclass[12pt]{article}
+\usepackage[hmargin=2.0cm,vmargin=1cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{natbib}
+\usepackage{amsmath}
+
+\title{\begin{LARGE}
+{Statistics class 1}
+\end{LARGE}}
+
+\author{Juan Nicol\'as Garavito Camargo}
+
+\begin{document}
+\maketitle
+
+\textbf{HW1: Find a pick the random number generator that you like, and understand
+how that random generation works., find a library that generate random
+numer in your fav language and figure out what is the period,
+clustering. Find the one you would like, same some plots! }
+
+How to know a random generator makes random number:
+
+1. Look at the distribution, it should be flat.
+2. You dont want a correlation between any sequence of numbers. I dont
+want clusters in a N-dimesional plot. 
+3. Every time you take random steps N of numbers and you average thos
+numbers, you will get a gaussian ditribution.
+4. See D-Jnuth definition of random numbers, is in the slides.
+
+\section{Berfords law:}
+
+P(x) = posterior in any units, k=factor to change to other units.
+
+\begin{equation}
+P(kx) = f(k)P(x)
+\end{equation}
+
+\begin{equation}
+\int P(x)dx = 1 -> \int P(kx') dx' = 1 = k \int P(kx')dx' = 1 -> \int
+P(kx')dx' = 1/k
+\end{equation}
+
+\begin{equation}
+\int f(k)P(x)dx = 1\k -> f(k) \int P(x)dx = 1/k -> f(k) = 1/k
+\end{equation}
+
+Difirencitating the above expressions:
+
+\begin{equation}
+P(kx) = P(x)/k -> d/dK P(kx) = - P(x)/k^2 
+\end{equation}
+
+\begin{equation}
+x P'(kx) = - P(x)/k^2 = (k=1) xP'(x) = -P(x)
+\end{equation}
+
+\begin{equation}
+x dP/dx = -P -> dP/P = - dx/x -> dlnP = -dLnX
+\end{equation}
+
+\begin{equation}
+P(x)  C/x
+\end{equation}
+
+The likelihood that ...
+
+Simon Newcomb notest this first
+
+Benfords law in elections, Nigeria!
+
+\textbf{In web page there is a paper proving Benfords law}
+
+\section{How to make a random generator, Linear Congruential Methiods}
+
+\begin{equation}
+X_{n+1} = (a X_n + c)mod   m=modulus
+\end{equation}
+
+$0<a<m$ is the multiplier, $0<c<m$ is the increment.
+
+This not works always, try $m=10$m $a=c=X_0=7$
+
+1. The long sequence that you can have before it repreats is $<m$.
+
+Then you want to pick a very long value of $m$. What is this largest
+number, in our computers if it is double precision 4bits, 8bytes, 2^32, this is a small
+number. (why?)
+
+$m=2^{32}$ if you want your random generator numbers you would like
+$N^2 << p = m$ , $N = 2^{16} = $
+do $m=2^{50}$ at least!!
+
+2. Clustering: if I take $k$ succesive random number and I plotted in
+the N dimensional space I have to have a uniform distribution, not
+clusters. $k-> m^{1/k}$ $2^{32/5} = 80$
+
+3. Efficiency
+
+4. repeatability, you would like to repeat the same sequence of random
+numbers. This is important when you are debugging your
+algorithm/code. 
+
+5. Portability, Will the RNG always give you the same sequence no
+matter what computer or OS you have.
+
+Some times $a$ if it s very big would give an overflow, it is art how
+to pick $a, c, m$ $m$ largest possible prime that you can register. $a$
+relative prime numbers!
+
+\section{Beyond LGM}
+
+1. Non linear methods
+$X_{n} = (a X^{2}_{n-1} + bX_{n-1}) + C$
+2. Multipler recursive methods
+$X_n = (a_1 X_{n-1} + .... + a_k X_{n-k})$
+
+
+\end{document}

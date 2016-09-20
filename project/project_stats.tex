@@ -154,6 +154,88 @@ In this section we explain the methods us
 
 \section{Data}\label{sec:data}
 
+The data used in this project can be downloaded online in
+\verb+http://www.mnras.oxfordjournals.org/lookup/suppl/doi:10.1093/mnras/stw115/-
+/DC1+, this data was observed with the SDSS 2.5m telescope
+\citep{Gunn98}. The photometry was taken by the SDSS-II-SN Survey
+\citep{Frieman08, Sako08, Sako14,}, the survey scan the sky in
+$300$ deg2 during three years 2005-2007, the survey took multicolor images ($u,g,r,i,z$) during
+three months per year. Approximately 500 SNe Ia were found and have
+spectroscopic confirmation. On the other hand, XXX candidates where
+observed but doesn't have spectroscopic confirmation. However,
+\citep{Campbell13} show that with an efficient photometric
+calibration these objects might be used to constrain the cosmological
+parameters. In order to perform such a calibration the redshift of
+the SNe-Ia host galaxy has to be known, data from the BOSS survey
+where used to this aim this allowing to a sample of 752 SNe Ia candidates
+between redshift $[0.05 - 0.55]$.
+
+The procedure to identify these candidates is based on a Bayesian light
+curve classifier method (PSNID) \citep{Sako11}.
+Bellow we briefly resumed the main aspects of this method:
+
+The likelihood $\chi$ is computed for the observed photometry and
+templates of SN Ia and core-collapse SN and identify the more likely
+SN type. The algorithm also compute the probability that a SN
+candidate could be either Ia, Ib/c or type II. The Bayesian evidence
+is computed by marginilizing PDF over the parameter space:
+
+\begin{equation}
+E_{Ia} = \int P_{pr}(z, A_v, T_{max},\Delta m_{12,B},
+\mu)e^{-\chi^2/2} dzdA_vdT_{max}d\Delta m_{15,B}d\mu
+\end{equation}
+
+Where $z$ is the redshift, $A_v$ the host galaxy extinction,
+$T_{max}$ the time of maximum light, $\Delta m_{15,B}$ the amount of
+magnitude decline in the B-band during the first 15 days after the
+maximum light, and $\mu$ is the distance modulus. The method use flat
+prior in $A_v, T_{max}, \Delta_m{12,B} \& \mu$, while in redshift it
+assumes Gaussian priors. The evidece of non SNe Ia is given by:
+
+\begin{equation}
+  E_{Ibc, II} \sum \int P(z)e^{\chi^2/2}dz dA_{v}dT_{max}d\mu
+\end{equation}
+
+Then the probability that the light curve it's of a one
+type of SN is given by:
+
+
+\begin{equation}
+ P_{type} = \dfrac{E_{type}}{E_{Ia} + E_{Ibc} + E_{II}}
+\end{equation}
+
+After selecting the SNe Ia the distance modulus is derived by fitting
+the light curve as a function of the stretch ($x_1$) the colour
+$c$ and
+the apparent magnitude $m_B$. With these parameters the distance modulus can
+be derived using:
+
+
+\begin{equation}
+\mu = m_B - M + \alpha x_1 + \beta c - \mu_{corr}
+\end{equation}
+
+Where $\alpha, \beta$ and $M$ (absolute magnitude in the B band)
+are constants, that are going to be marginalized with flat priors.
+The $\mu_{corr}$ term corresponds to the correction due to the
+Malmquist bias correction defined as:
+
+\begin{equation}
+\mu_{corr} = ae^{(bz)} + c
+\end{equation}
+
+With $a=-0.004\pm 0.001, b=7.26\pm0.31$ and $c=0.004\pm0.006$.
+
+Finally the host galaxy properties are also taken from the BOSS survey, From
+the sample of 752 SNe Ia candidates AGN host galaxies have to be
+removed from the sample because the line emission might dominate over
+the line flux from star formation which is one of the properties that
+\citep{\Campbell16} studied. The stellar mass of the remaining 581
+host galaxies was derived by studying the broad band photometry and
+comparing it with the best SED fit template. The chosen template used
+a \citep{Maraston13} population synthesis model and a Kroupa IMF.
+
+
 \section{Results}\label{sec:results}
 
 \section{Conclusions}\label{sec:conclusions}
